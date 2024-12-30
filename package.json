@@ -1,5 +1,6 @@
 {
     "name": "@alexlafroscia/shard",
+    "version": "0.1.0",
     "type": "module",
     "exports": "./dist/db.js",
     "files": [
