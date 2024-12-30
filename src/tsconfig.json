@@ -1,0 +1,17 @@
+{
+    "extends": "@tsconfig/node22/tsconfig.json",
+
+    "include": ["./**/*.ts"],
+
+    "compilerOptions": {
+        // Output Configuration
+        "outDir": "../dist",
+
+        // References Support
+        "composite": true,
+
+        // Declaration Generation
+        "declaration": true,
+        "declarationMap": true
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "extends": "@tsconfig/node22/tsconfig.json",
+
+    "include": ["./**/*.ts"],
+
+    "compilerOptions": {
+        // Output Configuration
+        "noEmit": true,
+
+        // Relax Settings for Vitest
+        "module": "Preserve",
+        "moduleResolution": "bundler",
+
+        // Declaration Generation
+        "declaration": true,
+        "declarationMap": true,
+
+        "paths": {
+            "~/*": ["../src/*"],
+            "~test/*": ["../test/*"]
+        }
+    },
+
+    "references": [{ "path": "../src/tsconfig.json" }]
+}
