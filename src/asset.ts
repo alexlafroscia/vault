@@ -1,3 +1,3 @@
 export class Asset {
-    constructor(private absolutePath: string) {}
+    constructor(/* private absolutePath: string */) {}
 }

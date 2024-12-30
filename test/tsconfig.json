@@ -15,6 +15,10 @@
         "declaration": true,
         "declarationMap": true,
 
+        // Strictness Settings
+        "strict": false,
+        "noUnusedLocals": true,
+
         "paths": {
             "~/*": ["../src/*"],
             "~test/*": ["../test/*"]

@@ -62,7 +62,7 @@ export class DB {
     }
 
     private addAsset(absolutePath: string): void {
-        const asset = new Asset(absolutePath);
+        const asset = new Asset(/* absolutePath */);
         const relativePath = relative(absolutePath, this.options);
 
         this.store.set(relativePath, asset);

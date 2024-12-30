@@ -13,6 +13,10 @@
         // Declaration Generation
         "declaration": true,
         "declarationMap": true,
-        "sourceMap": true
+        "sourceMap": true,
+
+        // Strictness Settings
+        "strict": true,
+        "noUnusedLocals": true
     }
 }
