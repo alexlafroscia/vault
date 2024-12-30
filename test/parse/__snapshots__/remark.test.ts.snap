@@ -1,0 +1,158 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic markdown 1`] = `
+{
+  "children": [
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 1,
+              "offset": 11,
+            },
+            "start": {
+              "column": 3,
+              "line": 1,
+              "offset": 2,
+            },
+          },
+          "type": "text",
+          "value": "Heading 1",
+        },
+      ],
+      "depth": 1,
+      "position": {
+        "end": {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "heading",
+    },
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 15,
+              "line": 3,
+              "offset": 27,
+            },
+            "start": {
+              "column": 1,
+              "line": 3,
+              "offset": 13,
+            },
+          },
+          "type": "text",
+          "value": "Paragraph Text",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 15,
+          "line": 3,
+          "offset": 27,
+        },
+        "start": {
+          "column": 1,
+          "line": 3,
+          "offset": 13,
+        },
+      },
+      "type": "paragraph",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 15,
+      "line": 3,
+      "offset": 27,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;
+
+exports[`frontmatter extraction 1`] = `
+{
+  "children": [
+    {
+      "position": {
+        "end": {
+          "column": 4,
+          "line": 3,
+          "offset": 16,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "yaml",
+      "value": "foo: bar",
+    },
+    {
+      "children": [
+        {
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 5,
+              "offset": 29,
+            },
+            "start": {
+              "column": 3,
+              "line": 5,
+              "offset": 20,
+            },
+          },
+          "type": "text",
+          "value": "Heading 1",
+        },
+      ],
+      "depth": 1,
+      "position": {
+        "end": {
+          "column": 12,
+          "line": 5,
+          "offset": 29,
+        },
+        "start": {
+          "column": 1,
+          "line": 5,
+          "offset": 18,
+        },
+      },
+      "type": "heading",
+    },
+  ],
+  "position": {
+    "end": {
+      "column": 12,
+      "line": 5,
+      "offset": 29,
+    },
+    "start": {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "root",
+}
+`;

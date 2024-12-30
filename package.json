@@ -13,17 +13,26 @@
         "format:check": "prettier --check ."
     },
     "dependencies": {
+        "@r4ai/remark-callout": "^0.6.2",
         "fast-glob": "^3.3.2",
+        "mdast": "^3.0.0",
+        "remark-frontmatter": "^5.0.0",
+        "remark-parse": "^11.0.0",
+        "remark-wiki-link": "^2.0.1",
         "to-vfile": "^8.0.0",
         "unified": "^11.0.5",
-        "vfile": "^6.0.3"
+        "vfile": "^6.0.3",
+        "yaml": "^2.6.1"
     },
     "devDependencies": {
         "@tsconfig/node22": "^22.0.0",
+        "@types/mdast": "^4.0.4",
         "@types/node": "^22.10.2",
+        "dedent": "^1.5.3",
         "npm-run-all": "^4.1.5",
         "prettier": "^3.4.2",
         "typescript": "^5.7.2",
+        "unist-util-find": "^3.0.0",
         "vite-tsconfig-paths": "^5.1.4",
         "vitest": "^2.1.8"
     },
