@@ -12,6 +12,7 @@
 
         // Declaration Generation
         "declaration": true,
-        "declarationMap": true
+        "declarationMap": true,
+        "sourceMap": true
     }
 }
