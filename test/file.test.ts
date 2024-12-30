@@ -11,11 +11,11 @@ test("caching the parsed AST", async () => {
 
     expect(parse, "File is not eagerly parsed").not.toHaveBeenCalled();
 
-    await file.ast();
+    file.ast;
 
     expect(parse, "File has now been parsed").toHaveBeenCalledTimes(1);
 
-    await file.ast();
+    file.ast;
 
     expect(parse, "File was not parsed a second time").toHaveBeenCalledTimes(1);
 });

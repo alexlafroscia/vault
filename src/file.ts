@@ -1,5 +1,6 @@
 import type { Root } from "mdast";
 import { VFile } from "vfile";
+import { LazyGetter } from "lazy-get-decorator";
 
 import type { DB } from "./db.js";
 import type { Asset } from "./asset.js";
@@ -12,26 +13,17 @@ export class File {
         private vfile: VFile,
     ) {}
 
-    private parseResult: ParseResult | undefined;
-
-    private async ensureParsed(): Promise<ParseResult> {
-        if (!this.parseResult) {
-            this.parseResult = this.db.parse(this.vfile);
-        }
-
-        return this.parseResult;
+    @LazyGetter()
+    private get parseResult(): ParseResult {
+        return this.db.parse(this.vfile);
     }
 
-    async ast(): Promise<Root> {
-        const { ast } = await this.ensureParsed();
-
-        return ast;
+    get ast(): Root {
+        return this.parseResult.ast;
     }
 
-    async frontmatter(): Promise<Frontmatter> {
-        const { frontmatter } = await this.ensureParsed();
-
-        return frontmatter;
+    get frontmatter(): Frontmatter {
+        return this.parseResult.frontmatter;
     }
 
     resolve(reference: string): File | Asset | undefined {
