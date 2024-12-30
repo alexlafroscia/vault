@@ -7,8 +7,8 @@ import { makeParser } from "../../src/parse/remark";
 test("without an alias", () => {
     const parse = makeParser();
     const { ast } = parse(dedent`
-			[[A Link]]
-		`);
+        [[A Link]]
+    `);
 
     const wikiLink = find(ast, { type: "wikiLink" });
 
@@ -25,8 +25,8 @@ test("without an alias", () => {
 test("with an alias", () => {
     const parse = makeParser();
     const { ast } = parse(dedent`
-			[[A Link|A Different Value]]
-		`);
+        [[A Link|A Different Value]]
+    `);
 
     const wikiLink = find(ast, { type: "wikiLink" });
 
@@ -45,8 +45,8 @@ test("when the file does not exist", () => {
         href: () => ({ type: "internal" }),
     });
     const { ast } = parse(dedent`
-			[[Mashed Potatoes]]
-		`);
+        [[Mashed Potatoes]]
+    `);
 
     const wikiLink = find(ast, { type: "wikiLink" });
 
@@ -72,8 +72,8 @@ test("when the file is not a recipe", () => {
         href: () => ({ type: "external" }),
     });
     const { ast } = parse(dedent`
-			[[A Link|A Different Value]]
-		`);
+        [[A Link|A Different Value]]
+    `);
 
     const wikiLink = find(ast, { type: "wikiLink" });
 
@@ -99,8 +99,8 @@ test("when the file is a recipe", () => {
         href: () => ({ type: "internal" }),
     });
     const { ast } = parse(dedent`
-			[[Mashed Potatoes]]
-		`);
+        [[Mashed Potatoes]]
+    `);
 
     const wikiLink = find(ast, { type: "wikiLink" });
 
@@ -126,8 +126,8 @@ test("when the file is not a recipe", () => {
         href: () => ({ type: "external" }),
     });
     const { ast } = parse(dedent`
-			[[A Link|A Different Value]]
-		`);
+        [[A Link|A Different Value]]
+    `);
 
     const wikiLink = find(ast, { type: "wikiLink" });
 
