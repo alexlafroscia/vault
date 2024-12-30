@@ -5,17 +5,29 @@ import { Asset } from "./asset.js";
 import { File } from "./file.js";
 import { isFile, isAsset, relative } from "./path.js";
 import { type DBOptions, normalizeOptions } from "./options.js";
+import { makeParser } from "./parse/remark.js";
 
 export class DB {
     /// MARK: Private Instance Properties
 
-    private store = new Map<string, File | Asset>();
     private options: DBOptions;
+    private store = new Map<string, File | Asset>();
+
+    /// MARK: Public Instance Properties
+
+    readonly parse: ReturnType<typeof makeParser>;
 
     /// MARK: Initialization
 
     private constructor(options: DBOptions) {
+        const db = this;
+
         this.options = normalizeOptions(options);
+        this.parse = makeParser({
+            get permalinks() {
+                return db.index();
+            },
+        });
     }
 
     static async init(options: DBOptions): Promise<DB> {
