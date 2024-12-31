@@ -6,7 +6,8 @@
         ".": "./dist/vault.js",
         "./asset": "./dist/asset.js",
         "./file": "./dist/file.js",
-        "./mdast": "./dist/mdast.js"
+        "./mdast": "./dist/mdast.js",
+        "./parser": "./dist/parse/remark.js"
     },
     "files": [
         "src",
