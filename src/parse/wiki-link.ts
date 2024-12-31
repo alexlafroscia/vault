@@ -40,27 +40,3 @@ export function makeOptions(db: RequiredDB): RemarkWikiLinkOptions {
 }
 
 export { remarkWikiLink };
-
-interface WikiLinkProperties {
-    className: string;
-    href: string;
-}
-
-interface WikiLinkData {
-    alias: string;
-    exists: boolean;
-    hName: "a";
-    permalink: string;
-    hProperties: WikiLinkProperties;
-}
-
-export interface WikiLink {
-    type: "wikiLink";
-    data: WikiLinkData;
-}
-
-declare module "mdast" {
-    interface PhrasingContentMap {
-        wikiLink: WikiLink;
-    }
-}

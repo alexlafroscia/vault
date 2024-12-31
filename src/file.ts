@@ -1,9 +1,9 @@
-import type { Root } from "mdast";
 import { VFile } from "vfile";
 import { LazyGetter } from "lazy-get-decorator";
 
 import type { Asset } from "./asset.js";
 import type { Brand } from "./brand.js";
+import type { Root } from "./mdast.js";
 import type { Vault } from "./vault.js";
 import type { ParseResult } from "./parse/remark.js";
 import type { Frontmatter } from "./parse/frontmatter.js";

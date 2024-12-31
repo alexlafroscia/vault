@@ -2,7 +2,10 @@
     "name": "@alexlafroscia/vault",
     "version": "0.1.0",
     "type": "module",
-    "exports": "./dist/vault.js",
+    "exports": {
+        ".": "./dist/vault.js",
+        "./mdast": "./dist/mdast.js"
+    },
     "files": [
         "src",
         "dist"

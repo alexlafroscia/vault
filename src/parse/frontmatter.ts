@@ -1,7 +1,8 @@
-import type { Root, Yaml } from "mdast";
 import { find } from "unist-util-find";
 import yaml from "yaml";
 import remarkFrontmatter from "remark-frontmatter";
+
+import type { Root, Yaml } from "../mdast.js";
 
 export { remarkFrontmatter };
 

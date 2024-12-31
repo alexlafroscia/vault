@@ -1,10 +1,9 @@
 import { describe, expect, test, vi } from "vitest";
 import { find } from "unist-util-find";
-import type { Image } from "mdast";
 
 import { File } from "~/file";
+import type { Image, WikiLink } from "~/mdast";
 import { makeParser } from "~/parse/remark";
-import type { WikiLink } from "~/parse/wiki-link";
 import { fixture } from "~test/helpers/fixture";
 
 vi.mock("~/parse/remark", { spy: true });

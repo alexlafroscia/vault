@@ -1,7 +1,7 @@
-import type { Root, Image, Node, Paragraph } from "mdast";
 import type { Plugin } from "unified";
 import { visit, type Test } from "unist-util-visit";
 
+import type { Root, Image, Node, Paragraph } from "../mdast.js";
 import type { Vault } from "../vault.js";
 
 function isParagraph(node: Node): node is Paragraph {

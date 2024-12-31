@@ -1,10 +1,10 @@
-import type { Root } from "mdast";
 import type { Compatible } from "vfile";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 
 import { remarkCallout, makeOptions as makeCalloutOptions } from "./callout.js";
 import { type Frontmatter, remarkFrontmatter, matter } from "./frontmatter.js";
+import type { Root } from "../mdast.js";
 import {
     remarkImageTransclusion,
     type RequiredDB as TransclusionDBRequirements,
