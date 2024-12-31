@@ -55,7 +55,7 @@ export class Vault {
     }
 
     private addAsset(absolutePath: string): void {
-        const asset = new Asset(/* absolutePath */);
+        const asset = new Asset(absolutePath);
         const relativePath = relative(absolutePath, this.options);
 
         this.store.set(relativePath as FilePath, asset);
