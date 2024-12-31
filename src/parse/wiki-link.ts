@@ -1,6 +1,6 @@
 import remarkWikiLink from "remark-wiki-link";
 
-import type { DB } from "../db.js";
+import type { Vault } from "../vault.js";
 import type { FilePath } from "../file.js";
 
 interface RemarkWikiLinkOptions {
@@ -17,7 +17,7 @@ export interface MakeOptionsOptions {
     href: (permalink: string) => HrefType;
 }
 
-export type RequiredDB = Pick<DB, "externalize" | "index">;
+export type RequiredDB = Pick<Vault, "externalize" | "index">;
 
 export function makeOptions(db: RequiredDB): RemarkWikiLinkOptions {
     return {

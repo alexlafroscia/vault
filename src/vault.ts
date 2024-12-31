@@ -8,7 +8,7 @@ import { isFile, isAsset, relative } from "./path.js";
 import { type DBOptions, normalizeOptions } from "./options.js";
 import { makeParser } from "./parse/remark.js";
 
-export class DB {
+export class Vault {
     /// MARK: Private Instance Properties
 
     private store = new Map<FilePath, File | Asset>();
@@ -23,8 +23,8 @@ export class DB {
         this.options = normalizeOptions(options);
     }
 
-    static async init(options: DBOptions): Promise<DB> {
-        const db = new DB(options);
+    static async init(options: DBOptions): Promise<Vault> {
+        const db = new Vault(options);
 
         const files = await glob(`${options.vaultPath}/**/*`, {
             ignore: [

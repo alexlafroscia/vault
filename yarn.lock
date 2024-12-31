@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@alexlafroscia/shard@workspace:.":
+"@alexlafroscia/vault@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@alexlafroscia/shard@workspace:."
+  resolution: "@alexlafroscia/vault@workspace:."
   dependencies:
     "@r4ai/remark-callout": "npm:^0.6.2"
     "@tsconfig/node22": "npm:^22.0.0"

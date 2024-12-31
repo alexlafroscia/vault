@@ -2,7 +2,7 @@ import type { Root, Image, Node, Paragraph } from "mdast";
 import type { Plugin } from "unified";
 import { visit, type Test } from "unist-util-visit";
 
-import type { DB } from "../db.js";
+import type { Vault } from "../vault.js";
 
 function isParagraph(node: Node): node is Paragraph {
     return node.type === "paragraph";
@@ -41,7 +41,7 @@ export interface RemarkImageTransclusionOptions {
     resolve?: (reference: string, from?: string) => string | undefined;
 }
 
-export type RequiredDB = Pick<DB, "externalize" | "resolvePath">;
+export type RequiredDB = Pick<Vault, "externalize" | "resolvePath">;
 
 export const remarkImageTransclusion: Plugin<[RequiredDB], Root> = (db) => {
     return function (tree, file) {

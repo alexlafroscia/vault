@@ -1,8 +1,8 @@
 {
-    "name": "@alexlafroscia/shard",
+    "name": "@alexlafroscia/vault",
     "version": "0.1.0",
     "type": "module",
-    "exports": "./dist/db.js",
+    "exports": "./dist/vault.js",
     "files": [
         "src",
         "dist"
