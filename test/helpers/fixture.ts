@@ -1,6 +1,6 @@
 import * as path from "node:path";
 
-import { DB } from "~/db";
+import { Vault } from "~/vault";
 import type { DBOptions } from "~/options";
 
 type Fixture = "basic";
@@ -8,8 +8,8 @@ type Fixture = "basic";
 export function fixture(
     fixture: Fixture,
     options: Partial<Omit<DBOptions, "vaultPath">> = {},
-): Promise<DB> {
-    return DB.init({
+): Promise<Vault> {
+    return Vault.init({
         vaultPath: path.resolve(__dirname, "../fixtures", fixture),
 
         externalize(path) {

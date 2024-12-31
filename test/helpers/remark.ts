@@ -1,9 +1,7 @@
 import { makeParser as baseMakeParser } from "~/parse/remark";
+import { Vault } from "~/vault";
 
-import { DB } from "~/db";
-import type { DBOptions } from "~/options";
-
-class UnitTestDB extends DB {
+class UnitTestDB extends Vault {
     constructor() {
         super({
             vaultPath: "",
