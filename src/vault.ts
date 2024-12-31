@@ -96,7 +96,7 @@ export class Vault {
     /**
      * @returns list of files contained in the DB
      */
-    index(): string[] {
+    index(): FilePath[] {
         return Array.from(this.store.keys());
     }
 }

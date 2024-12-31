@@ -4,6 +4,8 @@
     "type": "module",
     "exports": {
         ".": "./dist/vault.js",
+        "./asset": "./dist/asset.js",
+        "./file": "./dist/file.js",
         "./mdast": "./dist/mdast.js"
     },
     "files": [
