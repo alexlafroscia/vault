@@ -5,7 +5,7 @@ export function isFile(path: string) {
 }
 
 export function isAsset(path: string) {
-    return path.endsWith(".png");
+    return path.endsWith(".png") || path.endsWith(".jpg");
 }
 
 export function relative(path: string, options: DBOptions) {
