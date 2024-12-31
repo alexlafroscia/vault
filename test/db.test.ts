@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 
 import { Asset } from "~/asset";
 import { File } from "~/file";
-import { fixture } from "~test/helpers";
+import { fixture } from "~test/helpers/fixture";
 
 test("initializing the DB", async () => {
     const db = await fixture("basic");

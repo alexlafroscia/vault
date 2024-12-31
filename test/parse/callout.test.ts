@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import dedent from "dedent";
 import { find } from "unist-util-find";
 
-import { makeParser } from "~/parse/remark";
+import { makeParser } from "~test/helpers/remark";
 
 test("a callout with a title and body", () => {
     const parse = makeParser();

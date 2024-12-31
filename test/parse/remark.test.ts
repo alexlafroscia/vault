@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import dedent from "dedent";
 
-import { makeParser } from "../../src/parse/remark";
+import { makeParser } from "~test/helpers/remark";
 
 test("basic markdown", () => {
     const parse = makeParser();

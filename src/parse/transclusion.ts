@@ -2,6 +2,8 @@ import type { Root, Image, Node, Paragraph } from "mdast";
 import type { Plugin } from "unified";
 import { visit, type Test } from "unist-util-visit";
 
+import type { DB } from "../db.js";
+
 function isParagraph(node: Node): node is Paragraph {
     return node.type === "paragraph";
 }
@@ -39,10 +41,9 @@ export interface RemarkImageTransclusionOptions {
     resolve?: (reference: string, from?: string) => string | undefined;
 }
 
-export const remarkImageTransclusion: Plugin<
-    [RemarkImageTransclusionOptions],
-    Root
-> = (options) => {
+export type RequiredDB = Pick<DB, "externalize" | "resolvePath">;
+
+export const remarkImageTransclusion: Plugin<[RequiredDB], Root> = (db) => {
     return function (tree, file) {
         visit(tree, isTransclusion, (node) => {
             let transclusion = extractTransclusion(node);
@@ -54,9 +55,16 @@ export const remarkImageTransclusion: Plugin<
             let alt: string | undefined;
             [transclusion, alt] = transclusion.split("|");
 
+            const resolvedPath = db.resolvePath(transclusion);
+
+            if (!resolvedPath) {
+                // If the file does not exist, just don't do anything
+                return;
+            }
+
             const imageReplacement: Image = {
                 type: "image",
-                url: options.resolve?.(transclusion, file.path) ?? transclusion,
+                url: db.externalize(resolvedPath),
                 alt,
             };
 

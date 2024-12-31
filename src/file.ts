@@ -2,10 +2,13 @@ import type { Root } from "mdast";
 import { VFile } from "vfile";
 import { LazyGetter } from "lazy-get-decorator";
 
-import type { DB } from "./db.js";
 import type { Asset } from "./asset.js";
+import type { Brand } from "./brand.js";
+import type { DB } from "./db.js";
 import type { ParseResult } from "./parse/remark.js";
 import type { Frontmatter } from "./parse/frontmatter.js";
+
+export type FilePath = Brand<string, "FilePath">;
 
 export class File {
     constructor(

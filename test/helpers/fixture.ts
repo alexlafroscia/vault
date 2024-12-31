@@ -7,11 +7,15 @@ type Fixture = "basic";
 
 export function fixture(
     fixture: Fixture,
-    options: Omit<DBOptions, "vaultPath"> = {},
+    options: Partial<Omit<DBOptions, "vaultPath">> = {},
 ): Promise<DB> {
     return DB.init({
-        ...options,
-
         vaultPath: path.resolve(__dirname, "../fixtures", fixture),
+
+        externalize(path) {
+            return `/` + path;
+        },
+
+        ...options,
     });
 }

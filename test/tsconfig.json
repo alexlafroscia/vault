@@ -16,7 +16,7 @@
         "declarationMap": true,
 
         // Strictness Settings
-        "strict": false,
+        "strict": true,
         "noUnusedLocals": true,
 
         "paths": {

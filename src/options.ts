@@ -3,6 +3,14 @@ export interface DBOptions {
      * The absolute path to the Obsidian vault
      */
     vaultPath: string;
+
+    /**
+     * Translate an "internal" path within the vault into the "external"
+     * path that the file can be fetched from.
+     *
+     * This is used to resolve embedded assets or internal links within files
+     */
+    externalize(internalPath: string): string;
 }
 
 export function normalizeOptions(options: DBOptions): DBOptions {

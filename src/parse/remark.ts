@@ -7,12 +7,12 @@ import { remarkCallout, makeOptions as makeCalloutOptions } from "./callout.js";
 import { type Frontmatter, remarkFrontmatter, matter } from "./frontmatter.js";
 import {
     remarkImageTransclusion,
-    type RemarkImageTransclusionOptions,
+    type RequiredDB as TransclusionDBRequirements,
 } from "./transclusion.js";
 import {
     remarkWikiLink,
     makeOptions as makeRemarkWikiLinkOptions,
-    type MakeOptionsOptions as MakeRemarkWikiLinkOptionsOptions,
+    type RequiredDB as WikiLinkDBRequirements,
 } from "./wiki-link.js";
 
 export interface ParseResult {
@@ -20,29 +20,15 @@ export interface ParseResult {
     frontmatter: Frontmatter;
 }
 
-export interface MakeParserOptions
-    extends Partial<MakeRemarkWikiLinkOptionsOptions>,
-        Partial<RemarkImageTransclusionOptions> {}
+type RequiredDB = TransclusionDBRequirements & WikiLinkDBRequirements;
 
-export function makeParser(options: MakeParserOptions = {}) {
+export function makeParser(db: RequiredDB) {
     const parser = unified()
         .use(remarkParse)
         .use(remarkCallout, makeCalloutOptions())
         .use(remarkFrontmatter, ["yaml"])
-        .use(
-            remarkWikiLink,
-            makeRemarkWikiLinkOptions({
-                // Defaults
-                permalinks: [],
-                href(permalink) {
-                    return { type: "external", permalink };
-                },
-
-                // Overrides
-                ...options,
-            }),
-        )
-        .use(remarkImageTransclusion, options);
+        .use(remarkWikiLink, makeRemarkWikiLinkOptions(db))
+        .use(remarkImageTransclusion, db);
 
     return function parse(doc: Compatible): ParseResult {
         const parsedAST = parser.parse(doc);
