@@ -73,10 +73,12 @@ export class Vault {
     }
 
     resolvePath(reference: string, from?: File): FilePath | undefined {
-        const possibleFilePath = reference as FilePath;
+        const matches = this.index().filter((path) => {
+            return path.includes(reference);
+        });
 
-        if (this.store.has(possibleFilePath)) {
-            return possibleFilePath;
+        if (matches.length === 1) {
+            return matches[0];
         }
     }
 
