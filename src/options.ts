@@ -1,3 +1,5 @@
+import type { Processor } from "./parse/remark.js";
+
 export interface DBOptions {
     /**f
      * The absolute path to the Obsidian vault
@@ -11,6 +13,11 @@ export interface DBOptions {
      * This is used to resolve embedded assets or internal links within files
      */
     externalize(internalPath: string): string;
+
+    /**
+     * Allows for modifying the `unified` processor to add additional plugins
+     */
+    setupProcessor?: (Processor: Processor) => Processor;
 }
 
 export function normalizeOptions(options: DBOptions): DBOptions {

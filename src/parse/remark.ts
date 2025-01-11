@@ -1,18 +1,15 @@
 import type { Compatible } from "vfile";
-import { unified } from "unified";
+import { unified, type Processor as BaseProcessor } from "unified";
 import remarkParse from "remark-parse";
 
 import { remarkCallout, makeOptions as makeCalloutOptions } from "./callout.js";
 import { type Frontmatter, remarkFrontmatter, matter } from "./frontmatter.js";
 import type { Root } from "../mdast.js";
-import {
-    remarkImageTransclusion,
-    type RequiredDB as TransclusionDBRequirements,
-} from "./transclusion.js";
+import { remarkImageTransclusion } from "./transclusion.js";
+import type { Vault } from "../vault.js";
 import {
     remarkWikiLink,
     makeOptions as makeRemarkWikiLinkOptions,
-    type RequiredDB as WikiLinkDBRequirements,
 } from "./wiki-link.js";
 
 export interface ParseResult {
@@ -20,19 +17,28 @@ export interface ParseResult {
     frontmatter: Frontmatter;
 }
 
-type RequiredDB = TransclusionDBRequirements & WikiLinkDBRequirements;
+export type Processor = BaseProcessor<Root, Root, Root, undefined, undefined>;
 
-export function makeParser(db: RequiredDB) {
-    const parser = unified()
+type RequiredVault = Pick<
+    Vault,
+    "index" | "externalize" | "options" | "resolvePath"
+>;
+
+export function makeParser(db: RequiredVault) {
+    let processor: Processor = unified()
         .use(remarkParse)
         .use(remarkCallout, makeCalloutOptions())
         .use(remarkFrontmatter, ["yaml"])
         .use(remarkWikiLink, makeRemarkWikiLinkOptions(db))
         .use(remarkImageTransclusion, db);
 
+    if (db.options.setupProcessor) {
+        processor = db.options.setupProcessor(processor);
+    }
+
     return function parse(doc: Compatible): ParseResult {
-        const parsedAST = parser.parse(doc);
-        const transformedAST = parser.runSync(parsedAST, doc);
+        const parsedAST = processor.parse(doc);
+        const transformedAST = processor.runSync(parsedAST, doc);
 
         return {
             ast: transformedAST,
