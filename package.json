@@ -25,7 +25,6 @@
     "dependencies": {
         "@r4ai/remark-callout": "^0.6.2",
         "fast-glob": "^3.3.2",
-        "lazy-get-decorator": "^3.0.0",
         "mdast": "^3.0.0",
         "remark-frontmatter": "^5.0.0",
         "remark-parse": "^11.0.0",

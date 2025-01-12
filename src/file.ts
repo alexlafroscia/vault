@@ -1,12 +1,12 @@
-import { VFile } from "vfile";
-import { LazyGetter } from "lazy-get-decorator";
+import type { VFile } from "vfile";
 
 import type { Asset } from "./asset.js";
 import type { Brand } from "./brand.js";
+import { memoized } from "./decorators/memoized.js";
 import type { Root } from "./mdast.js";
-import type { Vault } from "./vault.js";
 import type { ParseResult } from "./parse/remark.js";
 import type { Frontmatter } from "./parse/frontmatter.js";
+import type { Vault } from "./vault.js";
 
 export type FilePath = Brand<string, "FilePath">;
 
@@ -16,7 +16,7 @@ export class File {
         private vfile: VFile,
     ) {}
 
-    @LazyGetter()
+    @memoized
     private get parseResult(): ParseResult {
         return this.db.parse(this.vfile);
     }

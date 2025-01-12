@@ -1,8 +1,8 @@
 import glob from "fast-glob";
 import { read } from "to-vfile";
-import { LazyGetter } from "lazy-get-decorator";
 
 import { Asset } from "./asset.js";
+import { memoized } from "./decorators/memoized.js";
 import { File, type FilePath } from "./file.js";
 import { isFile, isAsset, relative } from "./path.js";
 import { type DBOptions, normalizeOptions } from "./options.js";
@@ -63,7 +63,7 @@ export class Vault {
 
     /// MARK: Public Instance API
 
-    @LazyGetter()
+    @memoized
     get parse(): ReturnType<typeof makeParser> {
         return makeParser(this);
     }
