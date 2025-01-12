@@ -17,7 +17,10 @@
         "build": "tsc -b",
         "check": "run-p -lnc build format:check",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "test": "run-p -lnc 'test:*'",
+        "test:unit": "vitest run",
+        "test:esm": "node ./test/integration/import-as-esm.mjs"
     },
     "dependencies": {
         "@r4ai/remark-callout": "^0.6.2",
