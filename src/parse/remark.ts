@@ -19,10 +19,9 @@ export interface ParseResult {
 
 export type Processor = BaseProcessor<Root, Root, Root, undefined, undefined>;
 
-type RequiredVault = Pick<
-    Vault,
-    "index" | "externalize" | "options" | "resolvePath"
->;
+type RequiredVault = Pick<Vault, "index" | "externalize" | "resolvePath"> & {
+    options?: Pick<Vault["options"], "setupProcessor">;
+};
 
 export function makeParser(db: RequiredVault) {
     let processor: Processor = unified()
@@ -32,7 +31,7 @@ export function makeParser(db: RequiredVault) {
         .use(remarkWikiLink, makeRemarkWikiLinkOptions(db))
         .use(remarkImageTransclusion, db);
 
-    if (db.options.setupProcessor) {
+    if (db.options?.setupProcessor) {
         processor = db.options.setupProcessor(processor);
     }
 
