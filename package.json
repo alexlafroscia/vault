@@ -7,7 +7,8 @@
         "./asset": "./dist/asset.js",
         "./file": "./dist/file.js",
         "./mdast": "./dist/mdast.js",
-        "./parser": "./dist/parse/remark.js"
+        "./parser": "./dist/parse/remark.js",
+        "./test-helpers": "./dist/test-helpers.js"
     },
     "files": [
         "src",
