@@ -19,7 +19,10 @@ export interface ParseResult {
 
 export type Processor = BaseProcessor<Root, Root, Root, undefined, undefined>;
 
-type RequiredVault = Pick<Vault, "index" | "externalize" | "resolvePath"> & {
+export type RequiredVault = Pick<
+    Vault,
+    "index" | "externalize" | "resolvePath"
+> & {
     options?: Pick<Vault["options"], "setupProcessor">;
 };
 
