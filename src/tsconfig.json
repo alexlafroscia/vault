@@ -17,6 +17,7 @@
 
         // Strictness Settings
         "strict": true,
-        "noUnusedLocals": true
+        "noUnusedLocals": true,
+        "verbatimModuleSyntax": true
     }
 }
