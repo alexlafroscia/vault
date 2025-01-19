@@ -19,7 +19,7 @@
         "check": "run-p -lnc build format:check",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "test": "run-p -lnc 'test:*'",
+        "test": "run-s -lnc build 'format:check' 'test:*'",
         "test:unit": "vitest run",
         "test:esm": "node ./test/integration/import-as-esm.mjs"
     },
