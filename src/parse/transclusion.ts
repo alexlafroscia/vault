@@ -41,9 +41,11 @@ export interface RemarkImageTransclusionOptions {
     resolve?: (reference: string, from?: string) => string | undefined;
 }
 
-export type RequiredDB = Pick<Vault, "externalize" | "resolvePath">;
+export type RequiredVault = Pick<Vault, "externalize" | "resolvePath">;
 
-export const remarkImageTransclusion: Plugin<[RequiredDB], Root> = (db) => {
+export const remarkImageTransclusion: Plugin<[RequiredVault], Root> = (
+    vault,
+) => {
     return function (tree, file) {
         visit(tree, isTransclusion, (node) => {
             let transclusion = extractTransclusion(node);
@@ -55,7 +57,7 @@ export const remarkImageTransclusion: Plugin<[RequiredDB], Root> = (db) => {
             let alt: string | undefined;
             [transclusion, alt] = transclusion.split("|");
 
-            const resolvedPath = db.resolvePath(transclusion);
+            const resolvedPath = vault.resolvePath(transclusion);
 
             if (!resolvedPath) {
                 // If the file does not exist, just don't do anything
@@ -64,7 +66,7 @@ export const remarkImageTransclusion: Plugin<[RequiredDB], Root> = (db) => {
 
             const imageReplacement: Image = {
                 type: "image",
-                url: db.externalize(resolvedPath),
+                url: vault.externalize(resolvedPath),
                 alt,
             };
 

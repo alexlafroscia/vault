@@ -39,8 +39,8 @@ test("customizing the processor", () => {
         .fn()
         .mockImplementation((processor) => processor.use(plugin));
 
-    const parse = makeParser((db) => {
-        db.options.setupProcessor = setupProcessor;
+    const parse = makeParser((vault) => {
+        vault.options.setupProcessor = setupProcessor;
     });
 
     expect(setupProcessor).toHaveBeenCalledOnce();

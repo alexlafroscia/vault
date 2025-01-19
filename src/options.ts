@@ -1,6 +1,6 @@
 import type { Processor } from "./parse/remark.js";
 
-export interface DBOptions {
+export interface VaultOptions {
     /**f
      * The absolute path to the Obsidian vault
      */
@@ -20,7 +20,7 @@ export interface DBOptions {
     setupProcessor?: (Processor: Processor) => Processor;
 }
 
-export function normalizeOptions(options: DBOptions): DBOptions {
+export function normalizeOptions(options: VaultOptions): VaultOptions {
     const { vaultPath, ...rest } = options;
 
     return {

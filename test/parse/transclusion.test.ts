@@ -7,8 +7,8 @@ import { makeParser } from "~test/helpers/remark";
 
 describe("image transclude", () => {
     test("with alt text", () => {
-        const parse = makeParser((db) => {
-            vi.spyOn(db, "resolvePath").mockReturnValue(
+        const parse = makeParser((vault) => {
+            vi.spyOn(vault, "resolvePath").mockReturnValue(
                 "Some Image.png" as FilePath,
             );
         });

@@ -12,13 +12,13 @@ export type FilePath = Brand<string, "FilePath">;
 
 export class File {
     constructor(
-        private db: Vault,
+        private vault: Vault,
         private vfile: VFile,
     ) {}
 
     @memoized
     private get parseResult(): ParseResult {
-        return this.db.parse(this.vfile);
+        return this.vault.parse(this.vfile);
     }
 
     get ast(): Root {
@@ -30,6 +30,6 @@ export class File {
     }
 
     resolve(reference: string): File | Asset | undefined {
-        return this.db.resolve(reference, this);
+        return this.vault.resolve(reference, this);
     }
 }

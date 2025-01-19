@@ -9,8 +9,8 @@ import { fixture } from "~test/helpers/fixture";
 vi.mock("~/parse/remark", { spy: true });
 
 test("caching the parsed AST", async () => {
-    const db = await fixture("basic");
-    const file = db.resolve("First.md") as File;
+    const vault = await fixture("basic");
+    const file = vault.resolve("First.md") as File;
 
     expect(
         makeParser,
@@ -34,7 +34,7 @@ test("caching the parsed AST", async () => {
 
 describe("ast", () => {
     test("transcluding an asset", async () => {
-        const db = await fixture("basic", {
+        const vault = await fixture("basic", {
             externalize(path) {
                 if (path.endsWith(".png")) {
                     return "/static/" + path;
@@ -43,7 +43,7 @@ describe("ast", () => {
                 return "/" + path;
             },
         });
-        const file = db.resolve("First.md") as File;
+        const file = vault.resolve("First.md") as File;
 
         const image: Image | undefined = find(file.ast, { type: "image" });
 
@@ -52,8 +52,8 @@ describe("ast", () => {
 
     describe("resolving wiki links", () => {
         test("when the linked file exists", async () => {
-            const db = await fixture("basic");
-            const file = db.resolve("First.md") as File;
+            const vault = await fixture("basic");
+            const file = vault.resolve("First.md") as File;
 
             const wikiLink: WikiLink | undefined = find(file.ast, {
                 type: "wikiLink",
@@ -64,8 +64,8 @@ describe("ast", () => {
         });
 
         test("when the linked file does not exist", async () => {
-            const db = await fixture("basic");
-            const file = db.resolve("First.md") as File;
+            const vault = await fixture("basic");
+            const file = vault.resolve("First.md") as File;
 
             const wikiLink: WikiLink | undefined = find(file.ast, {
                 type: "wikiLink",

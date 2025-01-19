@@ -17,24 +17,26 @@ export interface MakeOptionsOptions {
     href: (permalink: string) => HrefType;
 }
 
-export type RequiredDB = Pick<Vault, "externalize" | "index">;
+export type RequiredVault = Pick<Vault, "externalize" | "index">;
 
-export function makeOptions(db: RequiredDB): RemarkWikiLinkOptions {
+export function makeOptions(vault: RequiredVault): RemarkWikiLinkOptions {
     return {
         aliasDivider: "|",
 
         get permalinks() {
-            return db.index();
+            return vault.index();
         },
 
         pageResolver(pageName) {
-            return db.index().filter((filePath) => filePath.includes(pageName));
+            return vault
+                .index()
+                .filter((filePath) => filePath.includes(pageName));
         },
 
         hrefTemplate(permalink) {
             // `permalink` has already been resolved; we can treat it
             // like a validated `FilePath`
-            return db.externalize(permalink as FilePath);
+            return vault.externalize(permalink as FilePath);
         },
     };
 }

@@ -26,16 +26,16 @@ export type RequiredVault = Pick<
     options?: Pick<Vault["options"], "setupProcessor">;
 };
 
-export function makeParser(db: RequiredVault) {
+export function makeParser(vault: RequiredVault) {
     let processor: Processor = unified()
         .use(remarkParse)
         .use(remarkCallout, makeCalloutOptions())
         .use(remarkFrontmatter, ["yaml"])
-        .use(remarkWikiLink, makeRemarkWikiLinkOptions(db))
-        .use(remarkImageTransclusion, db);
+        .use(remarkWikiLink, makeRemarkWikiLinkOptions(vault))
+        .use(remarkImageTransclusion, vault);
 
-    if (db.options?.setupProcessor) {
-        processor = db.options.setupProcessor(processor);
+    if (vault.options?.setupProcessor) {
+        processor = vault.options.setupProcessor(processor);
     }
 
     return function parse(doc: Compatible): ParseResult {

@@ -1,7 +1,7 @@
 import { makeParser as baseMakeParser } from "~/parse/remark";
 import { Vault } from "~/vault";
 
-class UnitTestDB extends Vault {
+class UnitTestVault extends Vault {
     constructor() {
         super({
             vaultPath: "",
@@ -21,10 +21,10 @@ class UnitTestDB extends Vault {
     }
 }
 
-export function makeParser(modifyDB: (db: UnitTestDB) => void = () => {}) {
-    const db = new UnitTestDB();
+export function makeParser(modify: (vault: UnitTestVault) => void = () => {}) {
+    const vault = new UnitTestVault();
 
-    modifyDB(db);
+    modify(vault);
 
-    return baseMakeParser(db);
+    return baseMakeParser(vault);
 }

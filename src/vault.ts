@@ -5,7 +5,7 @@ import { Asset } from "./asset.js";
 import { memoized } from "./decorators/memoized.js";
 import { File, type FilePath } from "./file.js";
 import { isFile, isAsset, relative } from "./path.js";
-import { type DBOptions, normalizeOptions } from "./options.js";
+import { type VaultOptions, normalizeOptions } from "./options.js";
 import { makeParser } from "./parse/remark.js";
 
 export class Vault {
@@ -15,16 +15,16 @@ export class Vault {
 
     /// MARK: Public Instance Properties
 
-    readonly options: DBOptions;
+    readonly options: VaultOptions;
 
     /// MARK: Initialization
 
-    protected constructor(options: DBOptions) {
+    protected constructor(options: VaultOptions) {
         this.options = normalizeOptions(options);
     }
 
-    static async init(options: DBOptions): Promise<Vault> {
-        const db = new Vault(options);
+    static async init(options: VaultOptions): Promise<Vault> {
+        const vault = new Vault(options);
 
         const files = await glob(`${options.vaultPath}/**/*`, {
             ignore: [
@@ -35,15 +35,15 @@ export class Vault {
 
         for (const filePath of files) {
             if (isFile(filePath)) {
-                await db.addFile(filePath);
+                await vault.addFile(filePath);
             }
 
             if (isAsset(filePath)) {
-                db.addAsset(filePath);
+                vault.addAsset(filePath);
             }
         }
 
-        return db;
+        return vault;
     }
 
     private async addFile(absolutePath: string): Promise<void> {
@@ -96,7 +96,7 @@ export class Vault {
     }
 
     /**
-     * @returns list of files contained in the DB
+     * @returns list of files contained in the Vault
      */
     index(): FilePath[] {
         return Array.from(this.store.keys());
